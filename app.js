@@ -1,6 +1,6 @@
 const express = require('express')
 const server = express()
-
+const MoviesRouter = require('./routes/movies')
 
 
 const PORT = process.env.PORT
@@ -14,3 +14,5 @@ server.listen(PORT, () => {
 server.get('/', (req, res) => {
     res.send('Server is Running')
 })
+
+server.use('/movies', MoviesRouter)
