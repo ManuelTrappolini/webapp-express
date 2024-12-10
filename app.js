@@ -2,6 +2,9 @@ const express = require('express')
 const server = express()
 const MoviesRouter = require('./routes/movies')
 const NotFound = require('./middlewares/NotFound')
+const ServerError = require('./middlewares/ServerError')
+
+
 
 const PORT = process.env.PORT
 const HOST = process.env.HOST
@@ -18,3 +21,5 @@ server.get('/', (req, res) => {
 server.use('/movies', MoviesRouter)
 
 server.use(NotFound)
+
+server.use(ServerError)
