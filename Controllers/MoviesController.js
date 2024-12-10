@@ -22,7 +22,7 @@ function index(req, res) {
 function show(req, res) {
 
     const id = req.params.id
-    const sql = `SELECT * FROM reviews WHERE id = ?`
+    const sql = `SELECT * FROM movies WHERE id = ?`
 
     const reviewsSql = `SELECT * FROM reviews WHERE movie_id = ?`
 
