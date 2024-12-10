@@ -1,6 +1,9 @@
 
 const connection = require('../database/connection')
 
+
+
+
 function index(req, res) {
     connection.query(`SELECT * FROM movies`, (err, results) => {
 
@@ -16,5 +19,36 @@ function index(req, res) {
 
 
 
+function show(req, res) {
 
-module.exports = { index }
+    const id = req.params.id
+    const sql = `SELECT * FROM reviews WHERE id = ?`
+
+    const reviewsSql = `SELECT * FROM reviews WHERE movie_id = ?`
+
+
+    connection.query(sql, [id], (err, results) => {
+
+        if (err) return res.status(500).json({ err: err })
+
+        if (results.length == 0) return res.status(404).json({ err: 'movie not found' })
+
+
+        connection.query(reviewsSql, [id], (err, reviewsResults) => {
+
+            if (err) return res.status(500).json({ err: err })
+
+            const movie = {
+                ...results[0],
+                reviews: reviewsResults
+            }
+
+            res.json(movie)
+        })
+
+    })
+}
+
+
+
+module.exports = { index, show }
