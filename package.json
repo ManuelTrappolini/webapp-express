@@ -1,0 +1,23 @@
+{
+  "name": "webapp-express",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": " node --watch --env-file=.env app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ManuelTrappolini/webapp-express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ManuelTrappolini/webapp-express/issues"
+  },
+  "homepage": "https://github.com/ManuelTrappolini/webapp-express#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
