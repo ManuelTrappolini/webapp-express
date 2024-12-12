@@ -3,7 +3,7 @@ const server = express()
 const MoviesRouter = require('./routes/movies')
 const NotFound = require('./middlewares/NotFound')
 const ServerError = require('./middlewares/ServerError')
-
+const cors = require('cors')
 
 
 const PORT = process.env.PORT
@@ -13,6 +13,8 @@ server.listen(PORT, () => {
     console.log(`Server is listening on port ${HOST}:${PORT}`);
 
 })
+
+server.use(cors())
 
 server.get('/', (req, res) => {
     res.send('Server is Running')
