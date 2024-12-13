@@ -50,5 +50,34 @@ function show(req, res) {
 }
 
 
+function review(req, res) {
 
-module.exports = { index, show }
+    const movie_id = Number(req.params.id)
+    const body = req.body
+    const { name, text, vote } = req.body
+
+
+    const sql = "INSERT INTO `reviews`   SET  name=?, vote=?, text=?, movie_id=?"
+
+    connection.query(sql, [name, vote, text, movie_id], (err, result) => {
+
+
+        if (err) return res.status(500).json({ error: err })
+
+        return res.status(201).json({ success: true })
+
+    })
+
+
+
+
+
+    console.log(movie_id, body);
+
+
+
+
+}
+
+
+module.exports = { index, show, review }
