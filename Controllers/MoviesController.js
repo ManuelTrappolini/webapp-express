@@ -24,7 +24,7 @@ function show(req, res) {
     const id = req.params.id
     const sql = `SELECT * FROM movies WHERE id = ?`
 
-    const reviewsSql = `SELECT * FROM reviews WHERE movie_id = ?`
+    const reviewsSql = `SELECT * FROM reviews WHERE movie_id = ? ORDER BY id DESC`
 
 
     connection.query(sql, [id], (err, results) => {
@@ -53,9 +53,9 @@ function show(req, res) {
 function review(req, res) {
 
     const movie_id = Number(req.params.id)
-    const body = req.body
-    const { name, text, vote } = req.body
 
+    const { name, text, vote } = req.body
+    console.log('Received data:', { name, text, vote })
 
     const sql = "INSERT INTO `reviews`   SET  name=?, vote=?, text=?, movie_id=?"
 
@@ -72,7 +72,7 @@ function review(req, res) {
 
 
 
-    console.log(movie_id, body);
+    console.log(movie_id);
 
 
 
